@@ -5,7 +5,7 @@ import { useSetTheme, useTheme } from '../../context/Theme/index.js';
 import { useTranslation } from 'react-i18next';
 import { API, getLogo, getSystemName, showSuccess, stringToColor } from '../../helpers/index.js';
 import fireworks from 'react-fireworks';
-import { CN, GB } from 'country-flag-icons/react/3x2';
+import { CN, GB, VN } from 'country-flag-icons/react/3x2';
 import NoticeModal from './NoticeModal.js';
 
 import {
@@ -607,6 +607,13 @@ const HeaderBar = ({ onMobileMenuToggle, drawerOpen }) => {
                   >
                     <GB title="English" className="!w-5 !h-auto" />
                     <span>English</span>
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => handleLanguageChange('vn')}
+                    className={`!flex !items-center !gap-2 !px-3 !py-1.5 !text-sm !text-semi-color-text-0 dark:!text-gray-200 ${currentLang === 'vn' ? '!bg-semi-color-primary-light-default dark:!bg-blue-600 !font-semibold' : 'hover:!bg-semi-color-fill-1 dark:hover:!bg-gray-600'}`}
+                  >
+                    <VN title="Tiếng Việt" className="!w-5 !h-auto" />
+                    <span>Tiếng Việt</span>
                   </Dropdown.Item>
                 </Dropdown.Menu>
               }
