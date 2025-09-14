@@ -49,6 +49,8 @@ function ConflictConfirmModal({ t, visible, items, onOk, onCancel }) {
     <Modal
       title={t('确认冲突项修改')}
       visible={visible}
+      okText={t('确定')}
+      cancelText={t('取消')}
       onCancel={onCancel}
       onOk={onOk}
       size={isMobile ? 'full-width' : 'large'}
@@ -732,6 +734,8 @@ export default function UpstreamRatioSync(props) {
         ref={channelSelectorRef}
         t={t}
         visible={modalVisible}
+        okText={t('确定')}
+        cancelText={t('取消')}
         onCancel={handleModalClose}
         onOk={confirmChannelSelection}
         allChannels={allChannels}
@@ -745,6 +749,8 @@ export default function UpstreamRatioSync(props) {
         t={t}
         visible={confirmVisible}
         items={conflictItems}
+        okText={t('确定')}
+        cancelText={t('取消')}
         onOk={async () => {
           setConfirmVisible(false);
           const curRatios = {

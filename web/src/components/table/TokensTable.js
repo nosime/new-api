@@ -419,6 +419,8 @@ const TokensTable = () => {
                 Modal.confirm({
                   title: t('确定是否要删除此令牌？'),
                   content: t('此修改将不可逆'),
+                  okText: t('确定'),
+                  cancelText: t('取消'),
                   onOk: () => {
                     (async () => {
                       await manageToken(record.id, 'delete', record);
@@ -788,6 +790,8 @@ const TokensTable = () => {
                     {t('确定要删除所选的 {{count}} 个令牌吗？', { count: selectedKeys.length })}
                   </div>
                 ),
+                okText: t('确定'),
+                cancelText: t('取消'),
                 onOk: () => batchDeleteTokens(),
               });
             }}

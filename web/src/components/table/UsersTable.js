@@ -218,6 +218,8 @@ const UsersTable = () => {
               Modal.confirm({
                 title: t('确定要提升此用户吗？'),
                 content: t('此操作将提升用户的权限级别'),
+                okText: t('确定'),
+                cancelText: t('取消'),
                 onOk: () => {
                   manageUser(record.id, 'promote', record);
                 },
@@ -232,6 +234,8 @@ const UsersTable = () => {
               Modal.confirm({
                 title: t('确定要降级此用户吗？'),
                 content: t('此操作将降低用户的权限级别'),
+                okText: t('确定'),
+                cancelText: t('取消'),
                 onOk: () => {
                   manageUser(record.id, 'demote', record);
                 },
@@ -246,6 +250,8 @@ const UsersTable = () => {
               Modal.confirm({
                 title: t('确定是否要注销此用户？'),
                 content: t('相当于删除用户，此修改将不可逆'),
+                okText: t('确定'),
+                cancelText: t('取消'),
                 onOk: () => {
                   (async () => {
                     await manageUser(record.id, 'delete', record);

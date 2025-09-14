@@ -1106,40 +1106,40 @@ const PersonalSetting = () => {
                             </RadioGroup>
                           </div>
 
-                          {/* Webhook设置 */}
+                          /* Webhook Settings */
                           {notificationSettings.warningType === 'webhook' && (
                             <div className="space-y-4">
                               <div className="bg-white rounded-xl">
-                                <Typography.Text strong className="block mb-3">{t('Webhook地址')}</Typography.Text>
+                                <Typography.Text strong className="block mb-3">{t('Webhook URL')}</Typography.Text>
                                 <Input
                                   value={notificationSettings.webhookUrl}
                                   onChange={(val) =>
                                     handleNotificationSettingChange('webhookUrl', val)
                                   }
-                                  placeholder={t('请输入Webhook地址，例如: https://example.com/webhook')}
+                                  placeholder={t('Please enter Webhook URL, e.g., https://example.com/webhook')}
                                   size="large"
                                   className="!rounded-lg"
                                   prefix={<Webhook size={16} className="m-2" />}
                                 />
                                 <div className="text-gray-500 text-sm mt-2">
-                                  {t('只支持https，系统将以 POST 方式发送通知，请确保地址可以接收 POST 请求')}
+                                  {t('Only HTTPS is supported. The system will send notifications via POST method. Please ensure the URL can receive POST requests')}
                                 </div>
                               </div>
 
                               <div className="bg-white rounded-xl">
-                                <Typography.Text strong className="block mb-3">{t('接口凭证（可选）')}</Typography.Text>
+                                <Typography.Text strong className="block mb-3">{t('Interface Credentials (Optional)')}</Typography.Text>
                                 <Input
                                   value={notificationSettings.webhookSecret}
                                   onChange={(val) =>
                                     handleNotificationSettingChange('webhookSecret', val)
                                   }
-                                  placeholder={t('请输入密钥')}
+                                  placeholder={t('Please enter secret key')}
                                   size="large"
                                   className="!rounded-lg"
                                   prefix={<IconKey />}
                                 />
                                 <div className="text-gray-500 text-sm mt-2">
-                                  {t('密钥将以 Bearer 方式添加到请求头中，用于验证webhook请求的合法性')}
+                                  {t('The secret key will be added to the request header as Bearer token to verify the legitimacy of webhook requests')}
                                 </div>
                               </div>
 
@@ -1148,7 +1148,7 @@ const PersonalSetting = () => {
                                   <div className="flex items-center">
                                     <Globe size={16} className="mr-2 text-slate-600" />
                                     <Typography.Text strong className="text-slate-700">
-                                      {t('Webhook请求结构')}
+                                      {t('Webhook Request Structure')}
                                     </Typography.Text>
                                   </div>
                                   {showWebhookDocs ? <IconChevronUp /> : <IconChevronDown />}
@@ -1156,28 +1156,28 @@ const PersonalSetting = () => {
                                 <Collapsible isOpen={showWebhookDocs}>
                                   <pre className="mt-4 bg-gray-800 text-gray-100 rounded-lg text-sm overflow-x-auto">
                                     {`{
-  "type": "quota_exceed",      // 通知类型
-  "title": "标题",             // 通知标题
-  "content": "通知内容",       // 通知内容，支持 {{value}} 变量占位符
-  "values": ["值1", "值2"],    // 按顺序替换content中的 {{value}} 占位符
-  "timestamp": 1739950503      // 时间戳
-}
+                            "type": "quota_exceed",      // Notification type
+                            "title": "Title",           // Notification title
+                            "content": "Notification content",  // Notification content, supports {{value}} variable placeholders
+                            "values": ["value1", "value2"],     // Replace {{value}} placeholders in content in order
+                            "timestamp": 1739950503     // Timestamp
+                          }
 
-示例：
-{
-  "type": "quota_exceed",
-  "title": "额度预警通知",
-  "content": "您的额度即将用尽，当前剩余额度为 {{value}}",
-  "values": ["$0.99"],
-  "timestamp": 1739950503
-}`}
+                          Example:
+                          {
+                            "type": "quota_exceed",
+                            "title": "Quota Warning Notification",
+                            "content": "Your quota is running low, current remaining quota is {{value}}",
+                            "values": ["$0.99"],
+                            "timestamp": 1739950503
+                          }`}
                                   </pre>
                                 </Collapsible>
                               </div>
                             </div>
                           )}
 
-                          {/* 邮件设置 */}
+                          {/* Email Settings */}
                           {notificationSettings.warningType === 'email' && (
                             <div className="bg-white rounded-xl">
                               <Typography.Text strong className="block mb-3">{t('通知邮箱')}</Typography.Text>

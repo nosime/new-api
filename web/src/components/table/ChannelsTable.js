@@ -459,6 +459,8 @@ const ChannelsTable = () => {
                 Modal.warning({
                   title: t('修改子渠道优先级'),
                   content: t('确定要修改所有子渠道优先级为 ') + e.target.value + t(' 吗？'),
+                  okText: t('确定'),
+                  cancelText: t('取消'),
                   onOk: () => {
                     if (e.target.value === '') {
                       return;
@@ -511,6 +513,8 @@ const ChannelsTable = () => {
                 Modal.warning({
                   title: t('修改子渠道权重'),
                   content: t('确定要修改所有子渠道权重为 ') + e.target.value + t(' 吗？'),
+                  okText: t('确定'),
+                  cancelText: t('取消'),
                   onOk: () => {
                     if (e.target.value === '') {
                       return;
@@ -548,6 +552,8 @@ const ChannelsTable = () => {
                 Modal.confirm({
                   title: t('确定是否要删除此渠道？'),
                   content: t('此修改将不可逆'),
+                  okText: t('确定'),
+                  cancelText: t('取消'),
                   onOk: () => {
                     (async () => {
                       await manageChannel(record.id, 'delete', record);
@@ -570,6 +576,8 @@ const ChannelsTable = () => {
                 Modal.confirm({
                   title: t('确定是否要复制此渠道？'),
                   content: t('复制渠道的所有信息'),
+                  okText: t('确定'),
+                  cancelText: t('取消'),
                   onOk: () => copySelectedChannel(record),
                 });
               },
@@ -1579,6 +1587,8 @@ const ChannelsTable = () => {
               Modal.confirm({
                 title: t('确定是否要删除所选通道？'),
                 content: t('此修改将不可逆'),
+                okText: t('确定'),
+                cancelText: t('取消'),
                 onOk: () => batchDeleteChannels(),
               });
             }}
@@ -1610,6 +1620,8 @@ const ChannelsTable = () => {
                       Modal.confirm({
                         title: t('确定？'),
                         content: t('确定要测试所有通道吗？'),
+                        okText: t('确定'),
+                        cancelText: t('取消'),
                         onOk: () => testAllChannels(),
                         size: 'small',
                         centered: true,
@@ -1627,6 +1639,8 @@ const ChannelsTable = () => {
                       Modal.confirm({
                         title: t('确定是否要修复数据库一致性？'),
                         content: t('进行该操作时，可能导致渠道访问错误，请仅在数据库出现问题时使用'),
+                        okText: t('确定'),
+                        cancelText: t('取消'),
                         onOk: () => fixChannelsAbilities(),
                         size: 'sm',
                         centered: true,
@@ -1645,6 +1659,8 @@ const ChannelsTable = () => {
                       Modal.confirm({
                         title: t('确定？'),
                         content: t('确定要更新所有已启用通道余额吗？'),
+                        okText: t('确定'),
+                        cancelText: t('取消'),
                         onOk: () => updateAllChannelsBalance(),
                         size: 'sm',
                         centered: true,
@@ -1663,6 +1679,8 @@ const ChannelsTable = () => {
                       Modal.confirm({
                         title: t('确定是否要删除禁用通道？'),
                         content: t('此修改将不可逆'),
+                        okText: t('确定'),
+                        cancelText: t('取消'),
                         onOk: () => deleteAllDisabledChannels(),
                         size: 'sm',
                         centered: true,
@@ -2200,6 +2218,7 @@ const ChannelsTable = () => {
                   showSizeChanger: false,
                   onPageChange: (page) => setModelTablePage(page),
                 }}
+                emptyText={t('暂无数据')}
               />
             </div>
           )}

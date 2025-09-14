@@ -119,6 +119,11 @@ const Home = () => {
                         The Unified<br />
                         <span className="shine-text">LLMs API Gateway</span>
                       </>
+                    ) : i18n.language === 'vn' ? (
+                      <>
+                        Cổng API Tập Trung<br />
+                        <span className="shine-text">Cho Các Mô Hình <br></br>Ngôn Ngữ</span>
+                      </>
                     ) : (
                       <>
                         统一的<br />

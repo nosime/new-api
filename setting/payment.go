@@ -12,12 +12,12 @@ var USDExchangeRate = 7.3
 
 var PayMethods = []map[string]string{
 	{
-		"name":  "支付宝",
+		"name":  "Alipay",
 		"color": "rgba(var(--semi-blue-5), 1)",
 		"type":  "alipay",
 	},
 	{
-		"name":  "微信",
+		"name":  "WeChat Pay",
 		"color": "rgba(var(--semi-green-5), 1)",
 		"type":  "wxpay",
 	},

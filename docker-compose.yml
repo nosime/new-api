@@ -16,9 +16,9 @@ services:
       - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # Point to the mysql service
       - REDIS_CONN_STRING=redis://redis
       - TZ=Asia/Shanghai
-      - ERROR_LOG_ENABLED=true # 是否启用错误日志记录
-    #      - STREAMING_TIMEOUT=120  # 流模式无响应超时时间，单位秒，默认120秒，如果出现空补全可以尝试改为更大值
-    #      - SESSION_SECRET=random_string  # 多机部署时设置，必须修改这个随机字符串！！！！！！！
+      - ERROR_LOG_ENABLED=true # Whether to enable error log recording (Có bật ghi log lỗi hay không)
+    #      - STREAMING_TIMEOUT=120  # Stream mode no response timeout in seconds, default 120 seconds, try larger value if empty completion occurs (Thời gian chờ không phản hồi trong chế độ stream tính bằng giây, mặc định 120 giây, thử giá trị lớn hơn nếu xảy ra hoàn thành trống)
+    #      - SESSION_SECRET=random_string  # Set for multi-machine deployment, must modify this random string!!! (Thiết lập cho triển khai đa máy, phải sửa đổi chuỗi ngẫu nhiên này!!!)
     #      - NODE_TYPE=slave  # Uncomment for slave node in multi-node deployment
     #      - SYNC_FREQUENCY=60  # Uncomment if regular database syncing is needed
     #      - FRONTEND_BASE_URL=https://openai.justsong.cn  # Uncomment for multi-node deployment with front-end URL

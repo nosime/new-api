@@ -10,7 +10,7 @@ import PageLayout from './components/layout/PageLayout.js';
 import './i18n/i18n.js';
 import './index.css';
 
-// 欢迎信息（二次开发者不准将此移除）
+// Welcome message - Secondary developers are not allowed to remove this (Thông báo chào mừng - Các nhà phát triển thứ cấp không được phép xóa điều này)
 // Welcome message (Secondary developers are not allowed to remove this)
 if (typeof window !== 'undefined') {
   console.log('%cWe ❤ NewAPI%c Github: https://github.com/QuantumNous/new-api',

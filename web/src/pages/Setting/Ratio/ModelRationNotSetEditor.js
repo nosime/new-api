@@ -39,7 +39,7 @@ export default function ModelRatioNotSetEditor(props) {
     useState('');
   const { Text } = Typography;
   // 定义可选的每页显示条数
-  const pageSizeOptions = [10, 20, 50, 100];
+  
 
   const getAllEnabledModels = async () => {
     try {
@@ -419,15 +419,20 @@ export default function ModelRatioNotSetEditor(props) {
             total: filteredModels.length,
             onPageChange: (page) => setCurrentPage(page),
             onPageSizeChange: handlePageSizeChange,
-            pageSizeOptions: pageSizeOptions,
             formatPageText: (page) =>
               t('第 {{start}} - {{end}} 条，共 {{total}} 条', {
                 start: page.currentStart,
                 end: page.currentEnd,
                 total: filteredModels.length,
               }),
-            showTotal: true,
+            showTotal: (total) => t('共 {{total}} 条', { total }),
             showSizeChanger: true,
+            pageSizeOptions: [
+              { value: 10, label: t('10 条/页') },
+              { value: 20, label: t('20 条/页') },
+              { value: 50, label: t('50 条/页') },
+              { value: 100, label: t('100 条/页') }
+            ]
           }}
           empty={
             <div style={{ textAlign: 'center', padding: '20px' }}>
@@ -441,6 +446,8 @@ export default function ModelRatioNotSetEditor(props) {
       <Modal
         title={t('添加模型')}
         visible={visible}
+        okText={t('确定')}
+        cancelText={t('取消')}
         onCancel={() => setVisible(false)}
         onOk={() => {
           currentModel && addModel(currentModel);
@@ -513,6 +520,8 @@ export default function ModelRatioNotSetEditor(props) {
       <Modal
         title={t('批量设置模型参数')}
         visible={batchVisible}
+        okText={t('确定')}
+        cancelText={t('取消')}
         onCancel={() => setBatchVisible(false)}
         onOk={handleBatchFill}
         width={500}

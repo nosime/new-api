@@ -55,7 +55,8 @@ const REGION_EXAMPLE = {
 };
 
 function type2secretPrompt(type) {
-  // inputs.type === 15 ? '按照如下格式输入：APIKey|SecretKey' : (inputs.type === 18 ? '按照如下格式输入：APPID|APISecret|APIKey' : '请输入渠道对应的鉴权密钥')
+  // Get authentication format prompt based on channel type (Lấy prompt định dạng xác thực dựa trên loại kênh)
+  // Different channel types require different format inputs (Các loại kênh khác nhau yêu cầu đầu vào định dạng khác nhau)
   switch (type) {
     case 15:
       return '按照如下格式输入：APIKey|SecretKey';
@@ -121,10 +122,10 @@ const EditChannel = (props) => {
   const formApiRef = useRef(null);
   const [vertexKeys, setVertexKeys] = useState([]);
   const [vertexFileList, setVertexFileList] = useState([]);
-  const vertexErroredNames = useRef(new Set()); // 避免重复报错
+  const vertexErroredNames = useRef(new Set()); // Avoid duplicate error messages (Tránh thông báo lỗi trùng lặp)
   const [isMultiKeyChannel, setIsMultiKeyChannel] = useState(false);
   const [channelSearchValue, setChannelSearchValue] = useState('');
-  const [useManualInput, setUseManualInput] = useState(false); // 是否使用手动输入模式
+  const [useManualInput, setUseManualInput] = useState(false); // Whether to use manual input mode (Có sử dụng chế độ nhập tay hay không)
   const getInitValues = () => ({ ...originInputs });
   const handleInputChange = (name, value) => {
     if (formApiRef.current) {
@@ -136,12 +137,13 @@ const EditChannel = (props) => {
 
     if (name === 'base_url' && value.endsWith('/v1')) {
       Modal.confirm({
-        title: '警告',
-        content:
-          '不需要在末尾加/v1，New API会自动处理，添加后可能导致请求失败，是否继续？',
-        onOk: () => {
-          setInputs((inputs) => ({ ...inputs, [name]: value }));
-        },
+      title: t('警告'), // Warning (Cảnh báo)
+      content: t('不需要在末尾加/v1，New API会自动处理，添加后可能导致请求失败，是否继续？'), // No need to add /v1 at the end, New API will handle it automatically, adding it may cause request failure, continue? (Không cần thêm /v1 ở cuối, New API sẽ tự động xử lý, việc thêm vào có thể gây lỗi yêu cầu, có tiếp tục không?)
+      okText: t('继续'), // Continue (Tiếp tục)
+      cancelText: t('取消'), // Cancel (Hủy)
+      onOk: () => {
+        setInputs((inputs) => ({ ...inputs, [name]: value }));
+      },
       });
       return;
     }
@@ -194,7 +196,7 @@ const EditChannel = (props) => {
       }
       setBasicModels(localModels);
       
-      // 重置手动输入模式状态
+      // Reset manual input mode state (Đặt lại trạng thái chế độ nhập thủ công)
       setUseManualInput(false);
     }
     //setAutoBan
@@ -257,7 +259,7 @@ const EditChannel = (props) => {
 
   const fetchUpstreamModelList = async (name) => {
     // if (inputs['type'] !== 1) {
-    //   showError(t('仅支持 OpenAI 接口格式'));
+    //   showError(t('Only supports OpenAI interface format (Chỉ hỗ trợ định dạng giao diện OpenAI)'));
     //   return;
     // }
     setLoading(true);
@@ -265,7 +267,7 @@ const EditChannel = (props) => {
     let err = false;
 
     if (isEdit) {
-      // 如果是编辑模式，使用已有的 channelId 获取模型列表
+      // If in edit mode, use existing channelId to fetch model list (Nếu ở chế độ chỉnh sửa, sử dụng channelId hiện có để lấy danh sách mô hình)
       const res = await API.get('/api/channel/fetch_models/' + channelId, { skipErrorHandler: true });
       if (res && res.data && res.data.success) {
         models.push(...res.data.data);
@@ -273,7 +275,7 @@ const EditChannel = (props) => {
         err = true;
       }
     } else {
-      // 如果是新建模式，通过后端代理获取模型列表
+      // If in create mode, fetch model list through backend proxy (Nếu ở chế độ tạo mới, lấy danh sách mô hình qua proxy backend)
       if (!inputs?.['key']) {
         showError(t('请填写密钥'));
         err = true;
@@ -424,7 +426,7 @@ const EditChannel = (props) => {
       } else {
         formApiRef.current?.setValues(getInitValues());
       }
-      // 重置手动输入模式状态
+      // Reset manual input mode state (Đặt lại trạng thái chế độ nhập thủ công)
       setUseManualInput(false);
     } else {
       formApiRef.current?.reset();
@@ -452,7 +454,7 @@ const EditChannel = (props) => {
         }
       }
 
-      // 非批量模式下只保留一个文件（最新选择的），避免重复叠加
+      // In non-batch mode, keep only one file (the most recently selected) to avoid duplicate accumulation (Trong chế độ không theo lô, chỉ giữ một tệp (được chọn gần đây nhất) để tránh tích lũy trùng lặp)
       if (!batch && validFiles.length > 1) {
         validFiles = [validFiles[validFiles.length - 1]];
         keys = [keys[keys.length - 1]];
@@ -477,12 +479,12 @@ const EditChannel = (props) => {
 
     if (localInputs.type === 41) {
       if (useManualInput) {
-        // 手动输入模式
+        // Manual input mode (Chế độ nhập thủ công)
         if (localInputs.key && localInputs.key.trim() !== '') {
           try {
-            // 验证 JSON 格式
+            // Validate JSON format (Xác thực định dạng JSON)
             const parsedKey = JSON.parse(localInputs.key);
-            // 确保是有效的密钥格式
+            // Ensure it's a valid key format (Đảm bảo đó là định dạng khóa hợp lệ)
             localInputs.key = JSON.stringify(parsedKey);
           } catch (err) {
             showError(t('密钥格式无效，请输入有效的 JSON 格式密钥'));
@@ -493,10 +495,10 @@ const EditChannel = (props) => {
           return;
         }
       } else {
-        // 文件上传模式
+        // File upload mode (Chế độ tải tệp lên)
         let keys = vertexKeys;
 
-        // 若当前未选择文件，尝试从已上传文件列表解析（异步读取）
+        // If no files are currently selected, try to parse from uploaded file list (async read) (Nếu hiện tại không có tệp nào được chọn, hãy thử phân tích từ danh sách tệp đã tải lên (đọc không đồng bộ))
         if (keys.length === 0 && vertexFileList.length > 0) {
           try {
             const parsed = await Promise.all(
@@ -514,17 +516,17 @@ const EditChannel = (props) => {
           }
         }
 
-        // 创建模式必须上传密钥；编辑模式可选
+        // Create mode requires key upload; edit mode is optional (Chế độ tạo yêu cầu tải lên khóa; chế độ chỉnh sửa là tùy chọn)
         if (keys.length === 0) {
           if (!isEdit) {
             showInfo(t('请上传密钥文件！'));
             return;
           } else {
-            // 编辑模式且未上传新密钥，不修改 key
+            // Edit mode without new key upload, do not modify key (Chế độ chỉnh sửa mà không tải lên khóa mới, không thay đổi khóa)
             delete localInputs.key;
           }
         } else {
-          // 有新密钥，则覆盖
+          // Have new key, then override (Có khóa mới, sau đó ghi đè)
           if (batch) {
             localInputs.key = JSON.stringify(keys);
           } else {
@@ -534,7 +536,7 @@ const EditChannel = (props) => {
       }
     }
 
-    // 如果是编辑模式且 key 为空字符串，避免提交空值覆盖旧密钥
+    // If in edit mode and key is empty string, avoid submitting empty value to overwrite old key (Nếu ở chế độ chỉnh sửa và khóa là chuỗi rỗng, tránh gửi giá trị rỗng để ghi đè khóa cũ)
     if (isEdit && (!localInputs.key || localInputs.key.trim() === '')) {
       delete localInputs.key;
     }
@@ -647,6 +649,8 @@ const EditChannel = (props) => {
             Modal.confirm({
               title: t('切换为单密钥模式'),
               content: t('将仅保留第一个密钥文件，其余文件将被移除，是否继续？'),
+              okText: t('继续'),
+              cancelText: t('取消'),
               onOk: () => {
                 const firstFile = vertexFileList[0];
                 const firstKey = vertexKeys[0] ? [vertexKeys[0]] : [];
@@ -674,10 +678,10 @@ const EditChannel = (props) => {
             setMultiToSingle(false);
             setMultiKeyMode('random');
           } else {
-            // 批量模式下禁用手动输入，并清空手动输入的内容
+            // Batch mode disables manual input and clears manually entered content (Chế độ hàng loạt tắt nhập thủ công và xóa nội dung được nhập thủ công)
             setUseManualInput(false);
             if (inputs.type === 41) {
-              // 清空手动输入的密钥内容
+              // Clear manually entered key content (Xóa nội dung khóa được nhập thủ công)
               if (formApiRef.current) {
                 formApiRef.current.setValue('key', '');
               }
@@ -707,7 +711,7 @@ const EditChannel = (props) => {
     () =>
       CHANNEL_OPTIONS.map((opt) => ({
         ...opt,
-        // 保持 label 为纯文本以支持搜索
+        // Keep label as plain text to support search (Giữ nhãn dưới dạng văn bản thuần túy để hỗ trợ tìm kiếm)
         label: opt.label,
       })),
     [],
@@ -729,7 +733,7 @@ const EditChannel = (props) => {
     
     const searchWords = channelSearchValue ? [channelSearchValue] : [];
     
-    // 构建样式类名
+    // Build style class names (Xây dựng tên lớp style)
     const optionClassName = [
       'flex items-center gap-3 px-3 py-2 transition-all duration-200 rounded-lg mx-2 my-1',
       focused && 'bg-blue-50 shadow-sm',

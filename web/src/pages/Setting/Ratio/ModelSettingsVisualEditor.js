@@ -137,7 +137,7 @@ export default function ModelSettingsVisualEditor(props) {
         if (results.includes(undefined)) return;
       } else if (requestQueue.length > 1) {
         if (results.includes(undefined)) {
-          return showError('部分保存失败，请重试');
+          return showError(t('部分保存失败，请重试'));
         }
       }
 
@@ -148,11 +148,11 @@ export default function ModelSettingsVisualEditor(props) {
         }
       }
 
-      showSuccess('保存成功');
+      showSuccess(t('保存成功'));
       props.refresh();
     } catch (error) {
       console.error('保存失败:', error);
-      showError('保存失败，请重试');
+      showError(t('保存失败，请重试'));
     } finally {
       setLoading(false);
     }
@@ -236,7 +236,7 @@ export default function ModelSettingsVisualEditor(props) {
 
   const updateModel = (name, field, value) => {
     if (isNaN(value)) {
-      showError('请输入数字');
+      showError(t('请输入数字'));
       return;
     }
     setModels((prev) =>
@@ -263,7 +263,7 @@ export default function ModelSettingsVisualEditor(props) {
     completionTokenPrice,
   ) => {
     if (!modelTokenPrice || modelTokenPrice === '0') {
-      showError('模型价格不能为0');
+      showError(t('模型价格不能为0'));
       return '';
     }
     return completionTokenPrice / modelTokenPrice;
@@ -484,6 +484,11 @@ export default function ModelSettingsVisualEditor(props) {
             showTotal: true,
             showSizeChanger: false,
           }}
+          empty={
+            <div style={{ textAlign: 'center', padding: '20px' }}>
+              {t('暂无数据')}
+            </div>
+          }
         />
       </Space>
 
@@ -496,6 +501,8 @@ export default function ModelSettingsVisualEditor(props) {
             : t('添加模型')
         }
         visible={visible}
+        okText={t('确定')}
+        cancelText={t('取消')}
         onCancel={() => {
           resetModalState();
           setVisible(false);

@@ -5,12 +5,14 @@ import { Empty } from '@douyinfe/semi-ui';
 import { IllustrationConstruction, IllustrationConstructionDark } from '@douyinfe/semi-illustrations';
 import { useTranslation } from 'react-i18next';
 
+// About page component - displays customizable about content or default project information (Component trang giới thiệu - hiển thị nội dung giới thiệu có thể tùy chỉnh hoặc thông tin dự án mặc định)
 const About = () => {
   const { t } = useTranslation();
   const [about, setAbout] = useState('');
   const [aboutLoaded, setAboutLoaded] = useState(false);
   const currentYear = new Date().getFullYear();
 
+  // Function to fetch and display about content from API or localStorage (Hàm để lấy và hiển thị nội dung giới thiệu từ API hoặc localStorage)
   const displayAbout = async () => {
     setAbout(localStorage.getItem('about') || '');
     const res = await API.get('/api/about');

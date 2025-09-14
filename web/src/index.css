@@ -1,4 +1,4 @@
-/* ==================== Tailwind CSS 配置 ==================== */
+/* ==================== Tailwind CSS Configuration (Cấu hình Tailwind CSS) ==================== */
 @layer tailwind-base, semi, tailwind-components, tailwind-utils;
 
 @layer tailwind-base {
@@ -13,22 +13,23 @@
   @tailwind utilities;
 }
 
-/* ==================== 全局基础样式 ==================== */
-/* 侧边栏宽度相关的 CSS 变量，配合 .sidebar-collapsed 类和媒体查询实现响应式布局 */
+/* ==================== Global Base Styles (Kiểu dáng cơ sở toàn cục) ==================== */
+/* Sidebar width related CSS variables, works with .sidebar-collapsed class and media queries for responsive layout (Biến CSS liên quan đến chiều rộng thanh bên, hoạt động với class .sidebar-collapsed và media queries cho bố cục responsive) */
 :root {
   --sidebar-width: 180px;
-  /* 展开时宽度 */
-  --sidebar-width-collapsed: 60px;  /* 折叠后宽度，显示图标栏 */
-  /* 折叠后宽度 */
+  /* Expanded width (Chiều rộng khi mở rộng) */
+  --sidebar-width-collapsed: 60px;
+  /* Collapsed width, shows icon bar (Chiều rộng khi thu gọn, hiển thị thanh biểu tượng) */
+  /* Collapsed width (Chiều rộng khi thu gọn) */
   --sidebar-current-width: var(--sidebar-width);
 }
 
-/* 当 body 上存在 .sidebar-collapsed 类时，使用折叠宽度 */
+/* When .sidebar-collapsed class exists on body, use collapsed width (Khi class .sidebar-collapsed tồn tại trên body, sử dụng chiều rộng thu gọn) */
 body.sidebar-collapsed {
   --sidebar-current-width: var(--sidebar-width-collapsed);
 }
 
-/* 移除了在移动端强制设为 0 的限制，改由 React 控制是否渲染侧边栏以实现显示/隐藏 */
+/* Removed the restriction of forcing to 0 on mobile, changed to React control whether to render sidebar for show/hide (Đã xóa hạn chế bắt buộc về 0 trên di động, thay đổi để React kiểm soát việc có render thanh bên để hiển thị/ẩn) */
 
 body {
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, 'Microsoft YaHei', sans-serif;
@@ -41,7 +42,7 @@ code {
     source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-/* ==================== 布局相关样式 ==================== */
+/* ==================== Layout Related Styles (Kiểu dáng liên quan đến bố cục) ==================== */
 .semi-layout::-webkit-scrollbar,
 .semi-layout-content::-webkit-scrollbar,
 .semi-sider::-webkit-scrollbar {
@@ -57,8 +58,8 @@ code {
   scrollbar-width: none;
 }
 
-/* ==================== 导航和侧边栏样式 ==================== */
-/* 导航项样式 */
+/* ==================== Navigation and Sidebar Styles (Kiểu dáng điều hướng và thanh bên) ==================== */
+/* Navigation item styles (Kiểu dáng mục điều hướng) */
 .semi-input-textarea-wrapper,
 .semi-navigation-sub-title,
 .semi-chat-inputBox-sendButton,
@@ -104,7 +105,7 @@ code {
   font-weight: 600 !important;
 }
 
-/* 自定义侧边栏样式 */
+/* Custom sidebar styles (Kiểu dáng thanh bên tùy chỉnh) */
 .sidebar-container {
   height: 100%;
   display: flex;
@@ -128,7 +129,7 @@ code {
   display: none;
 }
 
-/* 侧边栏导航项样式 */
+/* Sidebar navigation item styles (Kiểu dáng mục điều hướng thanh bên) */
 .sidebar-nav-item {
   border-radius: 6px;
   margin: 3px 8px;
@@ -147,7 +148,7 @@ code {
   font-weight: 500;
 }
 
-/* 图标容器样式 */
+/* Icon container styles (Kiểu dáng container biểu tượng) */
 .sidebar-icon-container {
   width: 22px;
   height: 22px;
@@ -169,13 +170,13 @@ code {
   transition: all 0.2s ease;
 }
 
-/* 分割线样式 */
+/* Divider styles (Kiểu dáng đường phân cách) */
 .sidebar-divider {
   margin: 4px 8px;
   opacity: 0.15;
 }
 
-/* 分组标签样式 */
+/* Group label styles (Kiểu dáng nhãn nhóm) */
 .sidebar-group-label {
   padding: 4px 15px 8px;
   color: var(--semi-color-text-2);
@@ -185,7 +186,7 @@ code {
   opacity: 0.8;
 }
 
-/* 底部折叠按钮 */
+/* Bottom collapse button (Nút thu gọn ở dưới cùng) */
 .sidebar-collapse-button {
   display: flex;
   justify-content: center;
@@ -217,12 +218,12 @@ code {
   transition: transform 0.3s ease;
 }
 
-/* 侧边栏区域容器 */
+/* Sidebar area container (Container khu vực thanh bên) */
 .sidebar-section {
   padding-top: 12px;
 }
 
-/* ==================== 聊天界面样式 ==================== */
+/* ==================== Chat Interface Styles (Kiểu dáng giao diện trò chuyện) ==================== */
 .semi-chat {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
@@ -271,7 +272,7 @@ code {
   font-size: 20px !important;
 }
 
-/* 隐藏所有聊天相关区域的滚动条 */
+/* Hide all chat-related area scrollbars (Ẩn tất cả thanh cuộn khu vực liên quan đến trò chuyện) */
 .semi-chat::-webkit-scrollbar,
 .semi-chat-chatBox::-webkit-scrollbar,
 .semi-chat-chatBox-wrap::-webkit-scrollbar,
@@ -293,8 +294,8 @@ code {
   scrollbar-width: none;
 }
 
-/* ==================== 组件特定样式 ==================== */
-/* Tabs组件样式 */
+/* ==================== Component Specific Styles (Kiểu dáng cụ thể của component) ==================== */
+/* Tabs component styles (Kiểu dáng component Tabs) */
 .semi-tabs-content {
   padding: 0 !important;
   height: calc(100% - 40px) !important;
@@ -310,7 +311,7 @@ code {
   height: 100% !important;
 }
 
-/* 表格样式 */
+/* Table styles (Kiểu dáng bảng) */
 .tableShow {
   display: revert;
 }
@@ -319,12 +320,12 @@ code {
   display: none !important;
 }
 
-/* 页脚样式 */
+/* Footer styles (Kiểu dáng chân trang) */
 .custom-footer {
   font-size: 1.1em;
 }
 
-/* 卡片内容容器通用样式 */
+/* Card content container general styles (Kiểu dáng chung container nội dung thẻ) */
 .card-content-container {
   position: relative;
 }
@@ -342,7 +343,7 @@ code {
   transition: opacity 0.3s ease;
 }
 
-/* ==================== 调试面板特定样式 ==================== */
+/* ==================== Debug Panel Specific Styles (Kiểu dáng cụ thể của bảng điều khiển debug) ==================== */
 .debug-panel .semi-tabs {
   height: 100% !important;
   display: flex !important;
@@ -358,8 +359,8 @@ code {
   overflow: hidden !important;
 }
 
-/* ==================== 滚动条样式统一管理 ==================== */
-/* 表格滚动条样式 */
+/* ==================== Unified Scrollbar Style Management (Quản lý kiểu dáng thanh cuộn thống nhất) ==================== */
+/* Table scrollbar styles (Kiểu dáng thanh cuộn bảng) */
 .semi-table-body::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -378,7 +379,7 @@ code {
   background: transparent;
 }
 
-/* 侧边抽屉滚动条样式 */
+/* Side drawer scrollbar styles (Kiểu dáng thanh cuộn ngăn kéo bên) */
 .semi-sidesheet-body::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -397,7 +398,7 @@ code {
   background: transparent;
 }
 
-/* 隐藏卡片内容区域的滚动条 */
+/* Hide card content area scrollbars (Ẩn thanh cuộn khu vực nội dung thẻ) */
 .model-test-scroll,
 .card-content-scroll,
 .model-settings-scroll,
@@ -419,7 +420,7 @@ code {
   display: none;
 }
 
-/* 图片列表滚动条样式 */
+/* Image list scrollbar styles (Kiểu dáng thanh cuộn danh sách hình ảnh) */
 .image-list-scroll::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -438,10 +439,10 @@ code {
   background: transparent;
 }
 
-/* ==================== 响应式/移动端样式 ==================== */
+/* ==================== Responsive/Mobile Styles (Kiểu dáng responsive/di động) ==================== */
 @media only screen and (max-width: 767px) {
 
-  /* 移动端表格样式调整 */
+  /* Mobile table style adjustments (Điều chỉnh kiểu dáng bảng di động) */
   .semi-table-tbody,
   .semi-table-row,
   .semi-table-row-cell {
@@ -459,7 +460,7 @@ code {
   }
 }
 
-/* ==================== 同步倍率 - 渠道选择器 ==================== */
+/* ==================== Sync Ratio - Channel Selector (Tỷ lệ đồng bộ - Bộ chọn kênh) ==================== */
 
 .components-transfer-source-item,
 .components-transfer-selected-item {
@@ -527,7 +528,7 @@ code {
   color: var(--semi-color-text-0);
 }
 
-/* ==================== 未读通知闪光效果 ==================== */
+/* ==================== Unread Notification Flash Effect (Hiệu ứng nhấp nháy thông báo chưa đọc) ==================== */
 @keyframes sweep-shine {
   0% {
     background-position: 200% 0;
@@ -555,7 +556,7 @@ code {
   -webkit-text-fill-color: transparent;
 }
 
-/* ==================== ScrollList 定制样式 ==================== */
+/* ==================== ScrollList Custom Styles (Kiểu dáng tùy chỉnh ScrollList) ==================== */
 .semi-scrolllist,
 .semi-scrolllist * {
   -ms-overflow-style: none;
@@ -580,7 +581,7 @@ code {
   padding-right: 0 !important;
 }
 
-/* ==================== Banner 背景模糊球 ==================== */
+/* ==================== Banner Background Blur Balls (Quả cầu mờ nền Banner) ==================== */
 .blur-ball {
   position: absolute;
   width: 360px;
@@ -608,7 +609,7 @@ code {
   opacity: 0.4;
 }
 
-/* 浅色主题下让模糊球更柔和 */
+/* Make blur balls softer in light theme (Làm cho quả cầu mờ mềm mại hơn trong chủ đề sáng) */
 html:not(.dark) .blur-ball-indigo {
   opacity: 0.25;
 }

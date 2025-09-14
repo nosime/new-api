@@ -151,6 +151,8 @@ const RedemptionsTable = () => {
               Modal.confirm({
                 title: t('确定是否要删除此兑换码？'),
                 content: t('此修改将不可逆'),
+                okText: t('确定'),
+                cancelText: t('取消'),
                 onOk: () => {
                   (async () => {
                     await manageRedemption(record.id, 'delete', record);
@@ -486,6 +488,8 @@ const RedemptionsTable = () => {
               Modal.confirm({
                 title: t('确定清除所有失效兑换码？'),
                 content: t('将删除已使用、已禁用及过期的兑换码，此操作不可撤销。'),
+                okText: t('确定'),
+                cancelText: t('取消'),
                 onOk: async () => {
                   setLoading(true);
                   const res = await API.delete('/api/redemption/invalid');
