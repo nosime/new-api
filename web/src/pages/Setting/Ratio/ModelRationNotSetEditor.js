@@ -425,14 +425,8 @@ export default function ModelRatioNotSetEditor(props) {
                 end: page.currentEnd,
                 total: filteredModels.length,
               }),
-            showTotal: (total) => t('共 {{total}} 条', { total }),
-            showSizeChanger: true,
-            pageSizeOptions: [
-              { value: 10, label: t('10 条/页') },
-              { value: 20, label: t('20 条/页') },
-              { value: 50, label: t('50 条/页') },
-              { value: 100, label: t('100 条/页') }
-            ]
+            showTotal: true,
+            showSizeChanger: false,
           }}
           empty={
             <div style={{ textAlign: 'center', padding: '20px' }}>

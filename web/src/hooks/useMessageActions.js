@@ -13,7 +13,7 @@ export const useMessageActions = (message, setMessage, onMessageSend, saveMessag
 
     if (!textToCopy) {
       Toast.warning({
-        content: t(ERROR_MESSAGES.NO_TEXT_CONTENT),
+        content: ERROR_MESSAGES(t).NO_TEXT_CONTENT,
         duration: 2,
       });
       return;
@@ -68,11 +68,11 @@ export const useMessageActions = (message, setMessage, onMessageSend, saveMessag
       } catch (err) {
         console.error('回退复制方案也失败:', err);
 
-        let errorMessage = t(ERROR_MESSAGES.COPY_FAILED);
+        let errorMessage = ERROR_MESSAGES(t).COPY_FAILED;
         if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost') {
-          errorMessage = t(ERROR_MESSAGES.COPY_HTTPS_REQUIRED);
+          errorMessage = ERROR_MESSAGES(t).COPY_HTTPS_REQUIRED;
         } else if (!navigator.clipboard && !document.execCommand) {
-          errorMessage = t(ERROR_MESSAGES.BROWSER_NOT_SUPPORTED);
+          errorMessage = ERROR_MESSAGES(t).BROWSER_NOT_SUPPORTED;
         }
 
         Toast.error({

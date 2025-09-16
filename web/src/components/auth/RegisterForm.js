@@ -132,7 +132,7 @@ const RegisterForm = () => {
       return;
     }
     if (password !== password2) {
-      showInfo('两次输入的密码不一致');
+      showInfo(t('两次输入的密码不一致'));
       return;
     }
     if (username && password) {

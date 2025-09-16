@@ -115,7 +115,7 @@ const SettingsPanel = ({
             </Typography.Text>
             {customRequestMode && (
               <Typography.Text className="text-xs text-orange-600">
-                (已在自定义模式中忽略)
+                ({t('已在自定义模式中忽略')})
               </Typography.Text>
             )}
           </div>
@@ -145,7 +145,7 @@ const SettingsPanel = ({
             </Typography.Text>
             {customRequestMode && (
               <Typography.Text className="text-xs text-orange-600">
-                (已在自定义模式中忽略)
+                ({t('已在自定义模式中忽略')})
               </Typography.Text>
             )}
           </div>
@@ -195,27 +195,27 @@ const SettingsPanel = ({
             <div className="flex items-center gap-2">
               <ToggleLeft size={16} className="text-gray-500" />
               <Typography.Text strong className="text-sm">
-                流式输出
+          {t('流式输出')}
               </Typography.Text>
               {customRequestMode && (
-                <Typography.Text className="text-xs text-orange-600">
-                  (已在自定义模式中忽略)
-                </Typography.Text>
+          <Typography.Text className="text-xs text-orange-600">
+            ({t('已在自定义模式中忽略')})
+          </Typography.Text>
               )}
             </div>
             <Switch
               checked={inputs.stream}
               onChange={(checked) => onInputChange('stream', checked)}
-              checkedText="开"
-              uncheckedText="关"
+              checkedText={t('开')}
+              uncheckedText={t('关')}
               size="small"
               disabled={customRequestMode}
             />
           </div>
         </div>
-      </div>
+            </div>
 
-      {/* 桌面端的配置管理放在底部 */}
+            {/* 桌面端的配置管理放在底部 */}
       {!styleState.isMobile && (
         <div className="flex-shrink-0 pt-3">
           <ConfigManager

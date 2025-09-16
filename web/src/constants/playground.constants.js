@@ -12,19 +12,19 @@ export const MESSAGE_ROLES = {
   SYSTEM: 'system',
 };
 
-// 默认消息示例
-export const DEFAULT_MESSAGES = [
+// 默认消息示例 - 传入 t 函数作为参数
+export const DEFAULT_MESSAGES = (t) => [
   {
     role: MESSAGE_ROLES.USER,
     id: '2',
     createAt: 1715676751919,
-    content: '你好',
+    content: t('你好'),
   },
   {
     role: MESSAGE_ROLES.ASSISTANT,
     id: '3',
     createAt: 1715676751919,
-    content: '你好，请问有什么可以帮助您的吗？',
+    content: t('你好，请问有什么可以帮助您的吗？'),
     reasoningContent: '',
     isReasoningExpanded: false,
   },
@@ -77,16 +77,16 @@ export const DEFAULT_CONFIG = {
 export const THINK_TAG_REGEX = /<think>([\s\S]*?)<\/think>/g;
 
 // ========== 错误消息 ==========
-export const ERROR_MESSAGES = {
-  NO_TEXT_CONTENT: '此消息没有可复制的文本内容',
-  INVALID_MESSAGE_TYPE: '无法复制此类型的消息内容',
-  COPY_FAILED: '复制失败，请手动选择文本复制',
-  COPY_HTTPS_REQUIRED: '复制功能需要 HTTPS 环境，请手动复制',
-  BROWSER_NOT_SUPPORTED: '浏览器不支持复制功能，请手动复制',
-  JSON_PARSE_ERROR: '自定义请求体格式错误，请检查JSON格式',
-  API_REQUEST_ERROR: '请求发生错误',
-  NETWORK_ERROR: '网络连接失败或服务器无响应',
-};
+export const ERROR_MESSAGES = (t) => ({
+  NO_TEXT_CONTENT: t('此消息没有可复制的文本内容'),
+  INVALID_MESSAGE_TYPE: t('无法复制此类型的消息内容'),
+  COPY_FAILED: t('复制失败，请手动选择文本复制'),
+  COPY_HTTPS_REQUIRED: t('复制功能需要 HTTPS 环境，请手动复制'),
+  BROWSER_NOT_SUPPORTED: t('浏览器不支持复制功能，请手动复制'),
+  JSON_PARSE_ERROR: t('自定义请求体格式错误，请检查JSON格式'),
+  API_REQUEST_ERROR: t('请求发生错误'),
+  NETWORK_ERROR: t('网络连接失败或服务器无响应'),
+});
 
 // ========== 存储键名 ==========
 export const STORAGE_KEYS = {

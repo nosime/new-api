@@ -1,12 +1,15 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DEFAULT_MESSAGES, DEFAULT_CONFIG, DEBUG_TABS, MESSAGE_STATUS } from '../constants/playground.constants';
 import { loadConfig, saveConfig, loadMessages, saveMessages } from '../components/playground/configStorage';
 import { processIncompleteThinkTags } from '../helpers';
 
 export const usePlaygroundState = () => {
+  const { t } = useTranslation();
+  
   // 使用惰性初始化，确保只在组件首次挂载时加载配置和消息
   const [savedConfig] = useState(() => loadConfig());
-  const [initialMessages] = useState(() => loadMessages() || DEFAULT_MESSAGES);
+  const [initialMessages] = useState(() => loadMessages() || DEFAULT_MESSAGES(t));
 
   // 基础配置状态
   const [inputs, setInputs] = useState(savedConfig.inputs || DEFAULT_CONFIG.inputs);
@@ -125,10 +128,10 @@ export const usePlaygroundState = () => {
     if (resetMessages) {
       setMessage([]);
       setTimeout(() => {
-        setMessage(DEFAULT_MESSAGES);
+        setMessage(DEFAULT_MESSAGES(t));
       }, 0);
     }
-  }, []);
+  }, [t]);
 
   // 清理定时器
   useEffect(() => {

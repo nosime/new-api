@@ -16,14 +16,16 @@ import {
   Check,
   X,
 } from 'lucide-react';
-
+import { useTranslation } from 'react-i18next';
 const ParameterControl = ({
   inputs,
   parameterEnabled,
   onInputChange,
   onParameterToggle,
   disabled = false,
+
 }) => {
+  const { t } = useTranslation();
   return (
     <>
       {/* Temperature */}
@@ -49,7 +51,7 @@ const ParameterControl = ({
           />
         </div>
         <Typography.Text className="text-xs text-gray-500 mb-2">
-          控制输出的随机性和创造性
+          {t('控制输出的随机性和创造性')}
         </Typography.Text>
         <Slider
           step={0.1}
@@ -85,7 +87,7 @@ const ParameterControl = ({
           />
         </div>
         <Typography.Text className="text-xs text-gray-500 mb-2">
-          核采样，控制词汇选择的多样性
+          {t('核采样，控制词汇选择的多样性')}
         </Typography.Text>
         <Slider
           step={0.1}
@@ -121,7 +123,7 @@ const ParameterControl = ({
           />
         </div>
         <Typography.Text className="text-xs text-gray-500 mb-2">
-          频率惩罚，减少重复词汇的出现
+          {t('频率惩罚，减少重复词汇的出现')}
         </Typography.Text>
         <Slider
           step={0.1}
@@ -157,7 +159,7 @@ const ParameterControl = ({
           />
         </div>
         <Typography.Text className="text-xs text-gray-500 mb-2">
-          存在惩罚，鼓励讨论新话题
+          {t('存在惩罚，鼓励讨论新话题')}
         </Typography.Text>
         <Slider
           step={0.1}
@@ -190,7 +192,7 @@ const ParameterControl = ({
           />
         </div>
         <Input
-          placeholder='MaxTokens'
+          placeholder={t('MaxTokens')}
           name='max_tokens'
           required
           autoComplete='new-password'
@@ -211,7 +213,7 @@ const ParameterControl = ({
               Seed
             </Typography.Text>
             <Typography.Text className="text-xs text-gray-400">
-              (可选，用于复现结果)
+              {t('(可选，用于复现结果)')}
             </Typography.Text>
           </div>
           <Button
@@ -225,7 +227,7 @@ const ParameterControl = ({
           />
         </div>
         <Input
-          placeholder='随机种子 (留空为随机)'
+          placeholder={t('随机种子 (留空为随机)')}
           name='seed'
           autoComplete='new-password'
           value={inputs.seed || ''}

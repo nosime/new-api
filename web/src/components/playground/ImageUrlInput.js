@@ -12,8 +12,10 @@ import {
   X,
   Image,
 } from 'lucide-react';
-
+import { useTranslation } from 'react-i18next';
 const ImageUrlInput = ({ imageUrls, imageEnabled, onImageUrlsChange, onImageEnabledChange, disabled = false }) => {
+  const { t } = useTranslation();
+
   const handleAddImageUrl = () => {
     const newUrls = [...imageUrls, ''];
     onImageUrlsChange(newUrls);
@@ -36,11 +38,11 @@ const ImageUrlInput = ({ imageUrls, imageEnabled, onImageUrlsChange, onImageEnab
         <div className="flex items-center gap-2">
           <Image size={16} className={imageEnabled && !disabled ? "text-blue-500" : "text-gray-400"} />
           <Typography.Text strong className="text-sm">
-            图片地址
+            {t('图片地址')}
           </Typography.Text>
           {disabled && (
             <Typography.Text className="text-xs text-orange-600">
-              (已在自定义模式中忽略)
+              ({t('已在自定义模式中忽略')})
             </Typography.Text>
           )}
         </div>
@@ -48,8 +50,8 @@ const ImageUrlInput = ({ imageUrls, imageEnabled, onImageUrlsChange, onImageEnab
           <Switch
             checked={imageEnabled}
             onChange={onImageEnabledChange}
-            checkedText="启用"
-            uncheckedText="停用"
+            checkedText={t('启用')}
+            uncheckedText={t('停用')}
             size="small"
             className="flex-shrink-0"
             disabled={disabled}
@@ -68,15 +70,15 @@ const ImageUrlInput = ({ imageUrls, imageEnabled, onImageUrlsChange, onImageEnab
 
       {!imageEnabled ? (
         <Typography.Text className="text-xs text-gray-500 mb-2 block">
-          {disabled ? '图片功能在自定义请求体模式下不可用' : '启用后可添加图片URL进行多模态对话'}
+          {disabled ? t('图片功能在自定义请求体模式下不可用') : t('启用后可添加图片URL进行多模态对话')}
         </Typography.Text>
       ) : imageUrls.length === 0 ? (
         <Typography.Text className="text-xs text-gray-500 mb-2 block">
-          {disabled ? '图片功能在自定义请求体模式下不可用' : '点击 + 按钮添加图片URL进行多模态对话'}
+          {disabled ? t('图片功能在自定义请求体模式下不可用') : t('点击 + 按钮添加图片URL进行多模态对话')}
         </Typography.Text>
       ) : (
         <Typography.Text className="text-xs text-gray-500 mb-2 block">
-          已添加 {imageUrls.length} 张图片{disabled ? ' (自定义模式下不可用)' : ''}
+          {t('已添加')} {imageUrls.length} {t('张图片')}{disabled ? ` (${t('自定义模式下不可用')})` : ''}
         </Typography.Text>
       )}
 

@@ -300,7 +300,7 @@ const EditTagModal = (props) => {
               loading={loading}
               icon={<IconSave />}
             >
-              okText={t('确定')}
+              {t('确定')}
         
             </Button>
             <Button
@@ -309,7 +309,7 @@ const EditTagModal = (props) => {
               onClick={handleClose}
               icon={<IconClose />}
             >
-              cancelText={t('取消')}
+              {t('取消')}
             </Button>
           </Space>
         </div>

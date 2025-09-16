@@ -218,7 +218,7 @@ const Playground = () => {
         return;
       } catch (error) {
         console.error('自定义请求体JSON解析失败:', error);
-        Toast.error(ERROR_MESSAGES.JSON_PARSE_ERROR);
+        Toast.error(ERROR_MESSAGES(t).JSON_PARSE_ERROR);
         return;
       }
     }
