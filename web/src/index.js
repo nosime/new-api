@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { StatusProvider } from './context/Status';
 import { ThemeProvider } from './context/Theme';
 import PageLayout from './components/layout/PageLayout.js';
+import SemiLocaleProvider from './components/common/SemiLocaleProvider.js';
 import './i18n/i18n.js';
 import './index.css';
 
@@ -31,9 +32,11 @@ root.render(
             v7_relativeSplatPath: true,
           }}
         >
-          <ThemeProvider>
-            <PageLayout />
-          </ThemeProvider>
+          <SemiLocaleProvider>
+            <ThemeProvider>
+              <PageLayout />
+            </ThemeProvider>
+          </SemiLocaleProvider>
         </BrowserRouter>
       </UserProvider>
     </StatusProvider>
