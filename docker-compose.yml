@@ -1,9 +1,9 @@
 services:
   new-api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: new-api:latest
+    image: nosime/new-api:latest  # Use image from Docker Hub
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     container_name: new-api
     restart: always
     command: --log-dir /app/logs
@@ -14,6 +14,8 @@ services:
     volumes:
       - ./data:/data
       - ./logs:/app/logs
+    env_file:
+      - .env  # Load environment variables from .env file
     environment:
       - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # Point to the mysql service
       - REDIS_CONN_STRING=redis://redis
