@@ -7,6 +7,8 @@ services:
     container_name: new-api
     restart: always
     command: --log-dir /app/logs
+    networks:
+      - cloudflare_network
     ports:
       - "3000:3000"
     volumes:
@@ -31,11 +33,19 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    profiles:
+      - all
+      - new-api
 
   redis:
     image: redis:latest
     container_name: redis
     restart: always
+    networks:
+      - cloudflare_network
+    profiles:
+      - all
+      - new-api
 
   mysql:
     image: mysql:8.2
@@ -48,6 +58,11 @@ services:
       - mysql_data:/var/lib/mysql
     # ports:
     #   - "3306:3306"  # If you want to access MySQL from outside Docker, uncomment
+    networks:
+      - cloudflare_network
+    profiles:
+      - all
+      - new-api
 
 volumes:
   mysql_data:
