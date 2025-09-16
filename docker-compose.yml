@@ -17,7 +17,7 @@ services:
     environment:
       - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # Point to the mysql service
       - REDIS_CONN_STRING=redis://redis
-      - TZ=Asia/Shanghai
+      - TZ=Asia/Ho_Chi_Minh
       - ERROR_LOG_ENABLED=true # Whether to enable error log recording (Có bật ghi log lỗi hay không)
     #      - STREAMING_TIMEOUT=120  # Stream mode no response timeout in seconds, default 120 seconds, try larger value if empty completion occurs (Thời gian chờ không phản hồi trong chế độ stream tính bằng giây, mặc định 120 giây, thử giá trị lớn hơn nếu xảy ra hoàn thành trống)
     #      - SESSION_SECRET=random_string  # Set for multi-machine deployment, must modify this random string!!! (Thiết lập cho triển khai đa máy, phải sửa đổi chuỗi ngẫu nhiên này!!!)
