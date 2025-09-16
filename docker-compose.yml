@@ -10,7 +10,7 @@ services:
     networks:
       - cloudflare_network
     ports:
-      - "3001:3000"
+      - "3000:3000"
     volumes:
       - ./data:/data
       - ./logs:/app/logs
