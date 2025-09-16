@@ -1,5 +1,5 @@
 <p align="right">
-   <a href="./README.md">中文</a> | <strong>English</strong> | <a href="./README.vi.md">Tiếng Việt</a>
+   <a href="./README.md">Tiếng Việt</a> | <strong>English</strong> | <a href="./README.zh.md">中文</a>
 </p>
 <div align="center">
 
@@ -35,7 +35,8 @@
 > [!NOTE]  
 > This is an open-source project developed based on [One API](https://github.com/songquanpeng/one-api)
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
+>
 > - This project is for personal learning purposes only, with no guarantee of stability or technical support.
 > - Users must comply with OpenAI's [Terms of Use](https://openai.com/policies/terms-of-use) and **applicable laws and regulations**, and must not use it for illegal purposes.
 > - According to the [《Interim Measures for the Management of Generative Artificial Intelligence Services》](http://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm), please do not provide any unregistered generative AI services to the public in China.
@@ -89,27 +90,27 @@ New API offers a wide range of features, please refer to [Features Introduction]
 14. Support for entering chat interface via /chat2link route
 15. 🧠 Support for setting reasoning effort through model name suffixes:
     1. OpenAI o-series models
-        - Add `-high` suffix for high reasoning effort (e.g.: `o3-mini-high`)
-        - Add `-medium` suffix for medium reasoning effort (e.g.: `o3-mini-medium`)
-        - Add `-low` suffix for low reasoning effort (e.g.: `o3-mini-low`)
+       - Add `-high` suffix for high reasoning effort (e.g.: `o3-mini-high`)
+       - Add `-medium` suffix for medium reasoning effort (e.g.: `o3-mini-medium`)
+       - Add `-low` suffix for low reasoning effort (e.g.: `o3-mini-low`)
     2. Claude thinking models
-        - Add `-thinking` suffix to enable thinking mode (e.g.: `claude-3-7-sonnet-20250219-thinking`)
+       - Add `-thinking` suffix to enable thinking mode (e.g.: `claude-3-7-sonnet-20250219-thinking`)
 16. 🔄 Thinking-to-content functionality
 17. 🔄 Model rate limiting for users
 18. 💰 Cache billing support, which allows billing at a set ratio when cache is hit:
     1. Set the `Prompt Cache Ratio` option in `System Settings-Operation Settings`
     2. Set `Prompt Cache Ratio` in the channel, range 0-1, e.g., setting to 0.5 means billing at 50% when cache is hit
     3. Supported channels:
-        - [x] OpenAI
-        - [x] Azure
-        - [x] DeepSeek
-        - [x] Claude
+       - [x] OpenAI
+       - [x] Azure
+       - [x] DeepSeek
+       - [x] Claude
 
 ## Model Support
 
 This version supports multiple models, please refer to [API Documentation-Relay Interface](https://docs.newapi.pro/api) for details:
 
-1. Third-party models **gpts** (gpt-4-gizmo-*)
+1. Third-party models **gpts** (gpt-4-gizmo-\*)
 2. Third-party channel [Midjourney-Proxy(Plus)](https://github.com/novicezk/midjourney-proxy) interface, [API Documentation](https://docs.newapi.pro/api/midjourney-proxy-image)
 3. Third-party channel [Suno API](https://github.com/Suno-API/Suno-API) interface, [API Documentation](https://docs.newapi.pro/api/suno-music)
 4. Custom channels, supporting full call address input
@@ -145,20 +146,24 @@ For detailed deployment guides, please refer to [Installation Guide-Deployment M
 > Latest Docker image: `calciumion/new-api:latest`
 
 ### Multi-machine Deployment Considerations
+
 - Environment variable `SESSION_SECRET` must be set, otherwise login status will be inconsistent across multiple machines
 - If sharing Redis, `CRYPTO_SECRET` must be set, otherwise Redis content cannot be accessed across multiple machines
 
 ### Deployment Requirements
+
 - Local database (default): SQLite (Docker deployment must mount the `/data` directory)
 - Remote database: MySQL version >= 5.7.8, PgSQL version >= 9.6
 
 ### Deployment Methods
 
 #### Using BaoTa Panel Docker Feature
+
 Install BaoTa Panel (version **9.2.0** or above), find **New-API** in the application store and install it.
 [Tutorial with images](./docs/BT.md)
 
 #### Using Docker Compose (Recommended)
+
 ```shell
 # Download the project
 git clone https://github.com/Calcium-Ion/new-api.git
@@ -169,6 +174,7 @@ docker-compose up -d
 ```
 
 #### Using Docker Image Directly
+
 ```shell
 # Using SQLite
 docker run --name new-api -d --restart always -p 3000:3000 -e TZ=Asia/Shanghai -v /home/ubuntu/data/new-api:/data calciumion/new-api:latest
@@ -178,9 +184,11 @@ docker run --name new-api -d --restart always -p 3000:3000 -e SQL_DSN="root:1234
 ```
 
 ## Channel Retry and Cache
+
 Channel retry functionality has been implemented, you can set the number of retries in `Settings->Operation Settings->General Settings`. It is **recommended to enable caching**.
 
 ### Cache Configuration Method
+
 1. `REDIS_CONN_STRING`: Set Redis as cache
 2. `MEMORY_CACHE_ENABLED`: Enable memory cache (no need to set manually if Redis is set)
 
@@ -195,18 +203,21 @@ For detailed API documentation, please refer to [API Documentation](https://docs
 - [Claude Chat API (messages)](https://docs.newapi.pro/api/anthropic-chat)
 
 ## Related Projects
+
 - [One API](https://github.com/songquanpeng/one-api): Original project
 - [Midjourney-Proxy](https://github.com/novicezk/midjourney-proxy): Midjourney interface support
 - [chatnio](https://github.com/Deeptrain-Community/chatnio): Next-generation AI one-stop B/C-end solution
 - [neko-api-key-tool](https://github.com/Calcium-Ion/neko-api-key-tool): Query usage quota with key
 
 Other projects based on New API:
+
 - [new-api-horizon](https://github.com/Calcium-Ion/new-api-horizon): High-performance optimized version of New API
 - [VoAPI](https://github.com/VoAPI/VoAPI): Frontend beautified version based on New API
 
 ## Help and Support
 
 If you have any questions, please refer to [Help and Support](https://docs.newapi.pro/support):
+
 - [Community Interaction](https://docs.newapi.pro/support/community-interaction)
 - [Issue Feedback](https://docs.newapi.pro/support/feedback-issues)
 - [FAQ](https://docs.newapi.pro/support/faq)
